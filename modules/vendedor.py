@@ -12,7 +12,6 @@ new_seller = [
     inquirer.Text( name = 'name', message ='Cual es el nombre?'),
     inquirer.Text( name = 'last', message ='Cual es el apellido?'),
     inquirer.Text( name = 'section', message ='A que seccion pertenece?'),
-    inquirer.Text( name = 'commission', message ='Cual es la comision de venta?'),
 ]
 
 def seller_menu(selected_option):
@@ -26,10 +25,9 @@ def seller_menu(selected_option):
                         vendedor['name'], 
                         vendedor['last'],
                         vendedor['section'],
-                        vendedor['commission'],
                         )
         lista_vendedores.append(vendedor.get())
-        print(f"Se agrego el producto: \n {vendedor.get()}")
+        print(f"Se agrego el vendedor: \n {vendedor.get()}")
     elif selected_option == '3':
         try:
             list_to_delete = [f"El vendedor: {_['nombre']} {_['apellido']} - id: {_['id_vendedor']}" for _ in lista_vendedores]
@@ -49,4 +47,4 @@ def seller_menu(selected_option):
         cantidad = int(input('Indique la cantidad a vender, solo numeros enteros: '))
         client_to_update = [f"El cliente: {_['nombre']} - id: {_['id_cliente']}" for _ in lista_clientes.get()]
         cliente = menus.menu('clientes', client_to_update)[-4:]
-        print(Vendedor.venta(producto, cantidad, cliente))
+        print(Vendedor.venta(producto, cantidad, cliente, lista_vendedores[0]['_Vendedor__comision']))

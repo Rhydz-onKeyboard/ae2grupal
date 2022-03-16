@@ -25,3 +25,6 @@ class Producto:
 
     def get_supplier(self):
         return self.proveedor.get()
+
+    def get_impuesto(self):
+        return self.__impuesto
