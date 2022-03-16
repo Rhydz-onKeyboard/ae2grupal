@@ -1,10 +1,11 @@
 import inquirer
 from models.cliente import Cliente
+from models.lista_clientes import Lista_clientes
 from modules import menus
 from helpers import uuid_generator
 from datetime import datetime
 
-lista_clientes = []
+lista_clientes = Lista_clientes()
 
 new_client = [
     inquirer.Text( name = 'rut', message ='Cual es el rut del cliente?'),
@@ -16,7 +17,7 @@ new_client = [
 
 def clients_menu(selected_option):
     if selected_option == '1':
-        print(lista_clientes)
+        print(lista_clientes.get())
     elif selected_option == '2':
         cliente = menus.add_item(new_client)
         cliente = Cliente(
@@ -28,15 +29,15 @@ def clients_menu(selected_option):
                         datetime.today().strftime('%d-%m-%Y'),
                         cliente['saldo']
                         )
-        lista_clientes.append(cliente.get())
+        lista_clientes.add(cliente.get())
         print(f"Se agrego el cliente: \n {cliente.get()}")
     elif selected_option == '3':
-        list_to_delete = [f"El cliente: {_['nombre']} {_['apellido']} - id: {_['id_cliente']}" for _ in lista_clientes]
+        list_to_delete = [f"El cliente: {_['nombre']} {_['apellido']} - id: {_['id_cliente']}" for _ in lista_clientes.clientes_]
         dato_eliminar = menus.to_delete('cliente', list_to_delete)[-4:]
-        for client in lista_clientes:
+        for client in lista_clientes.clientes_:
             if client['id_cliente'] == dato_eliminar:
                 confirm = menus.confirm_remove('cliente')
                 if confirm:
-                    lista_clientes.remove(client)
+                    lista_clientes.clientes_.remove(client)
                 else:
                     print('Regresaras al menu principal')

@@ -11,7 +11,7 @@ def menu(titulo, questions_list):
 
     questions = [
         inquirer.List(titulo,
-            message='Que desea hacer?',
+            message='Seleccione la opcion que desea: ',
             choices= questions_list,
             carousel=True
         ),
@@ -24,12 +24,15 @@ def add_item(input_list = []):
     return inquirer.prompt(input_list)
 
 def to_delete( to, list_ = []):
-    to_delete = [inquirer.List(to, 
-        message = f'Seleccione el {to} a eliminar', 
-        choices = list_)
-    ]
-    item = inquirer.prompt(to_delete)
-    return item[to]
+    if len(list_) == 0:
+        print('El listado no tiene elementos')
+    else:
+        to_delete = [inquirer.List(to, 
+            message = f'Seleccione el {to} a eliminar', 
+            choices = list_)
+        ]
+        item = inquirer.prompt(to_delete)
+        return item[to]
 
 def confirm_remove(text):
     question = [

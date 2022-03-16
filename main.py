@@ -29,7 +29,8 @@ seller_questions = [
     {'value': 1, 'name':'Mostrar Vendedores'},
     {'value': 2, 'name':'Agregar Vendedor'},
     {'value': 3, 'name':'Eliminar Vendedor'},
-    {'value': 4, 'name':'Atras'},
+    {'value': 4, 'name':'Hacer Venta'},
+    {'value': 5, 'name':'Atras'},
 ]
 seller_questions_list = [ f"{_['value']}. {_['name']}" for _ in seller_questions]
 

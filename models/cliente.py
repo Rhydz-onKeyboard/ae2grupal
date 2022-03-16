@@ -6,7 +6,7 @@ class Cliente:
         self.apellido = apellido
         self.correo = correo
         self.fecha_registro = fecha_registro
-        self.__saldo = saldo
+        self.__saldo = int(saldo)
         
     def get(self):
         return self.__dict__
@@ -15,4 +15,5 @@ class Cliente:
         return self.__saldo
     
     def setSaldo(self, saldo):
-        self.__saldo = saldo
+        self.__saldo -= saldo
+
